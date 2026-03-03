@@ -1,0 +1,29 @@
+{
+  "900": {
+    "title": "Historia & geografi",
+    "children": {
+      "940": {
+        "title": "Europas historia",
+        "children": {
+          "948": {
+            "title": "Skandinavien",
+            "children": {
+              "948.5": { "title": "Sverige" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "300": {
+    "title": "Samhällsvetenskap",
+    "children": {
+      "330": {
+        "title": "Nationalekonomi",
+        "children": {
+          "331": { "title": "Arbetsmarknad" }
+        }
+      }
+    }
+  }
+}
