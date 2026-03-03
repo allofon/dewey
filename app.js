@@ -1,169 +1,161 @@
-let deweyData = {};
-let exercisesData = [];
-
-let baseNumber = "";
-let table1Part = "";
-let table2Part = "";
-
-async function loadData() {
-  const deweyRes = await fetch('./dewey.json');
-  deweyData = await deweyRes.json();
-
-  const exercisesRes = await fetch('./exercises.json');
-  exercisesData = await exercisesRes.json();
-
-  renderExercise();
-}
-
-const exerciseCard = document.getElementById("exerciseCard");
-const selectors = document.getElementById("selectors");
-const selectedNumber = document.getElementById("selectedNumber");
-const extensionArea = document.getElementById("extensionArea");
-
-function renderExercise() {
-  const ex = exercisesData[0];
-  exerciseCard.innerHTML = `
-    <h2>Fall</h2>
-    <p><strong>Titel:</strong> ${ex.title}</p>
-    <p><strong>Beskrivning:</strong> ${ex.description}</p>
-  `;
-
-  resetSelection();
-}
-
-function resetSelection() {
-  selectors.innerHTML = "";
-  extensionArea.innerHTML = "";
-  baseNumber = "";
-  table1Part = "";
-  table2Part = "";
-  updateDisplay();
-  renderLevel(deweyData, 0);
-}
-
-function renderLevel(levelData, depth) {
-  const select = document.createElement("select");
-  select.innerHTML = '<option value="">Välj nivå</option>';
-
-  Object.keys(levelData).forEach(key => {
-    const option = document.createElement("option");
-    option.value = key;
-    option.textContent = key + " – " + levelData[key].title;
-    select.appendChild(option);
-  });
-
-  select.addEventListener("change", function () {
-    removeDeeperLevels(depth);
-    const value = this.value;
-    if (!value) return;
-
-    baseNumber = value;
-    table1Part = "";
-    table2Part = "";
-    updateDisplay();
-
-    const selectedItem = levelData[value];
-    if (selectedItem.children) {
-      renderLevel(selectedItem.children, depth + 1);
-    } else {
-      renderExtensionOptions();
+{
+  "000": {
+    "title": "Datavetenskap, information & allmänna verk",
+    "children": {
+      "000": {"title": "Allmänna verk"},
+      "010": {"title": "Bibliografi"},
+      "020": {"title": "Biblioteks- & informationsvetenskap"},
+      "030": {"title": "Encyklopedier"},
+      "040": {"title": "Oklassificerade verk"},
+      "050": {"title": "Tidskrifter & seriella resurser"},
+      "060": {"title": "Organisationer & museer"},
+      "070": {"title": "Nyhetsmedia & journalistik"},
+      "080": {"title": "Allmänna samlingsverk"},
+      "090": {"title": "Manuskript & sällsynta böcker"}
     }
-  });
+  },
 
-  selectors.appendChild(select);
-}
-
-function removeDeeperLevels(depth) {
-  while (selectors.children.length > depth + 1) {
-    selectors.removeChild(selectors.lastChild);
-  }
-  extensionArea.innerHTML = "";
-}
-
-function renderExtensionOptions() {
-  extensionArea.innerHTML = "";
-
-  const btn = document.createElement("button");
-  btn.textContent = "Utveckla med standardindelning (Tabell 1)";
-  btn.onclick = renderTable1;
-  extensionArea.appendChild(btn);
-}
-
-function renderTable1() {
-  const table1 = {
-    "-01": "Teori",
-    "-03": "Ordböcker",
-    "-05": "Tidskrifter",
-    "-07": "Undervisning",
-    "-09": "Historia",
-    "-092": "Biografi",
-    "-093": "Geografisk behandling"
-  };
-
-  const select = document.createElement("select");
-  select.innerHTML = '<option value="">Välj standardindelning</option>';
-
-  Object.keys(table1).forEach(key => {
-    const option = document.createElement("option");
-    option.value = key;
-    option.textContent = key + " – " + table1[key];
-    select.appendChild(option);
-  });
-
-  select.addEventListener("change", function () {
-    table1Part = this.value;
-    table2Part = "";
-    updateDisplay();
-
-    if (table1Part === "-09" || table1Part === "-093") {
-      renderTable2();
+  "100": {
+    "title": "Filosofi & psykologi",
+    "children": {
+      "100": {"title": "Filosofi"},
+      "110": {"title": "Metafysik"},
+      "120": {"title": "Epistemologi"},
+      "130": {"title": "Parapsykologi & ockultism"},
+      "140": {"title": "Specifika filosofiska system"},
+      "150": {"title": "Psykologi"},
+      "160": {"title": "Logik"},
+      "170": {"title": "Etik"},
+      "180": {"title": "Antik, medeltida & österländsk filosofi"},
+      "190": {"title": "Modern västerländsk filosofi"}
     }
-  });
+  },
 
-  extensionArea.appendChild(select);
-}
+  "200": {
+    "title": "Religion",
+    "children": {
+      "200": {"title": "Religion i allmänhet"},
+      "210": {"title": "Religionsfilosofi"},
+      "220": {"title": "Bibeln"},
+      "230": {"title": "Kristendom"},
+      "240": {"title": "Kristen etik & andakt"},
+      "250": {"title": "Kristna kyrkor"},
+      "260": {"title": "Kristen organisation"},
+      "270": {"title": "Kyrkohistoria"},
+      "280": {"title": "Kristna samfund"},
+      "290": {"title": "Andra religioner"}
+    }
+  },
 
-function renderTable2() {
-  const table2 = {
-    "485": "Sverige",
-    "486": "Norge",
-    "487": "Danmark",
-    "41": "Storbritannien",
-    "43": "Tyskland",
-    "44": "Frankrike",
-    "73": "USA"
-  };
+  "300": {
+    "title": "Samhällsvetenskaper",
+    "children": {
+      "300": {"title": "Samhällsvetenskap i allmänhet"},
+      "310": {"title": "Statistik"},
+      "320": {"title": "Statsvetenskap"},
+      "330": {"title": "Nationalekonomi"},
+      "340": {"title": "Rättsvetenskap"},
+      "350": {"title": "Offentlig förvaltning"},
+      "360": {"title": "Sociala problem & tjänster"},
+      "370": {"title": "Utbildning"},
+      "380": {"title": "Handel & kommunikation"},
+      "390": {"title": "Seder & folkliv"}
+    }
+  },
 
-  const select = document.createElement("select");
-  select.innerHTML = '<option value="">Lägg till geografiskt område</option>';
+  "400": {
+    "title": "Språk",
+    "children": {
+      "400": {"title": "Språk i allmänhet"},
+      "410": {"title": "Lingvistik"},
+      "420": {"title": "Engelska"},
+      "430": {"title": "Tyska"},
+      "440": {"title": "Franska"},
+      "450": {"title": "Italienska"},
+      "460": {"title": "Spanska"},
+      "470": {"title": "Latin"},
+      "480": {"title": "Grekiska"},
+      "490": {"title": "Övriga språk"}
+    }
+  },
 
-  Object.keys(table2).forEach(key => {
-    const option = document.createElement("option");
-    option.value = key;
-    option.textContent = key + " – " + table2[key];
-    select.appendChild(option);
-  });
+  "500": {
+    "title": "Naturvetenskap",
+    "children": {
+      "500": {"title": "Naturvetenskap i allmänhet"},
+      "510": {"title": "Matematik"},
+      "520": {"title": "Astronomi"},
+      "530": {"title": "Fysik"},
+      "540": {"title": "Kemi"},
+      "550": {"title": "Geovetenskap"},
+      "560": {"title": "Fossil & förhistoriskt liv"},
+      "570": {"title": "Biologi"},
+      "580": {"title": "Botanik"},
+      "590": {"title": "Zoologi"}
+    }
+  },
 
-  select.addEventListener("change", function () {
-    table2Part = this.value;
-    updateDisplay();
-  });
+  "600": {
+    "title": "Teknik",
+    "children": {
+      "600": {"title": "Teknik i allmänhet"},
+      "610": {"title": "Medicin & hälsa"},
+      "620": {"title": "Ingenjörsvetenskap"},
+      "630": {"title": "Jordbruk"},
+      "640": {"title": "Hem & hushåll"},
+      "650": {"title": "Företagsekonomi"},
+      "660": {"title": "Kemisk teknik"},
+      "670": {"title": "Tillverkning"},
+      "680": {"title": "Finmekanik & diverse teknik"},
+      "690": {"title": "Byggnadsteknik"}
+    }
+  },
 
-  extensionArea.appendChild(select);
-}
+  "700": {
+    "title": "Konst & fritid",
+    "children": {
+      "700": {"title": "Konst i allmänhet"},
+      "710": {"title": "Landskapsarkitektur"},
+      "720": {"title": "Arkitektur"},
+      "730": {"title": "Skulptur"},
+      "740": {"title": "Teckning & dekorativ konst"},
+      "750": {"title": "Måleri"},
+      "760": {"title": "Grafisk konst"},
+      "770": {"title": "Fotografi"},
+      "780": {"title": "Musik"},
+      "790": {"title": "Sport & fritid"}
+    }
+  },
 
-function updateDisplay() {
-  let fullNumber = baseNumber;
+  "800": {
+    "title": "Litteratur",
+    "children": {
+      "800": {"title": "Litteratur i allmänhet"},
+      "810": {"title": "Amerikansk litteratur på engelska"},
+      "820": {"title": "Engelsk litteratur"},
+      "830": {"title": "Tysk litteratur"},
+      "840": {"title": "Fransk litteratur"},
+      "850": {"title": "Italiensk litteratur"},
+      "860": {"title": "Spansk litteratur"},
+      "870": {"title": "Latin litteratur"},
+      "880": {"title": "Grekisk litteratur"},
+      "890": {"title": "Övriga litteraturer"}
+    }
+  },
 
-  if (table1Part) {
-    fullNumber += table1Part.replace("-", ".");
+  "900": {
+    "title": "Historia & geografi",
+    "children": {
+      "900": {"title": "Historia i allmänhet"},
+      "910": {"title": "Geografi & resor"},
+      "920": {"title": "Biografi & genealogi"},
+      "930": {"title": "Forntidens historia"},
+      "940": {"title": "Europas historia"},
+      "950": {"title": "Asiens historia"},
+      "960": {"title": "Afrikas historia"},
+      "970": {"title": "Nordamerikas historia"},
+      "980": {"title": "Sydamerikas historia"},
+      "990": {"title": "Oceanien & polområden"}
+    }
   }
-
-  if (table2Part) {
-    fullNumber += table2Part;
-  }
-
-  selectedNumber.textContent = fullNumber || "Inget valt";
 }
-
-loadData();
