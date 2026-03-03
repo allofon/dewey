@@ -1,6 +1,10 @@
 let deweyData = {};
 let exercisesData = [];
 
+let baseNumber = "";
+let table1Part = "";
+let table2Part = "";
+
 async function loadData() {
   const deweyRes = await fetch('./dewey.json');
   deweyData = await deweyRes.json();
@@ -8,23 +12,16 @@ async function loadData() {
   const exercisesRes = await fetch('./exercises.json');
   exercisesData = await exercisesRes.json();
 
-  renderExercise(); // rendera först när data är laddad
+  renderExercise();
 }
-
-let currentExerciseIndex = 0;
-let userAnswer = "";
 
 const exerciseCard = document.getElementById("exerciseCard");
 const selectors = document.getElementById("selectors");
 const selectedNumber = document.getElementById("selectedNumber");
-const feedback = document.getElementById("feedback");
-const checkBtn = document.getElementById("checkBtn");
-const nextBtn = document.getElementById("nextBtn");
+const extensionArea = document.getElementById("extensionArea");
 
 function renderExercise() {
-  if (!exercisesData.length) return;
-
-  const ex = exercisesData[currentExerciseIndex];
+  const ex = exercisesData[0];
   exerciseCard.innerHTML = `
     <h2>Fall</h2>
     <p><strong>Titel:</strong> ${ex.title}</p>
@@ -36,42 +33,40 @@ function renderExercise() {
 
 function resetSelection() {
   selectors.innerHTML = "";
-  userAnswer = "";
-  selectedNumber.textContent = "Inget valt";
-  feedback.innerText = "";
-
+  extensionArea.innerHTML = "";
+  baseNumber = "";
+  table1Part = "";
+  table2Part = "";
+  updateDisplay();
   renderLevel(deweyData, 0);
 }
 
 function renderLevel(levelData, depth) {
-  if (!levelData) return;
-
   const select = document.createElement("select");
   select.innerHTML = '<option value="">Välj nivå</option>';
 
   Object.keys(levelData).forEach(key => {
-    const item = levelData[key];
-
     const option = document.createElement("option");
     option.value = key;
-    option.textContent = key + " – " + item.title;
-
+    option.textContent = key + " – " + levelData[key].title;
     select.appendChild(option);
   });
 
   select.addEventListener("change", function () {
     removeDeeperLevels(depth);
-
     const value = this.value;
     if (!value) return;
 
-    userAnswer = value;
-    selectedNumber.textContent = userAnswer;
+    baseNumber = value;
+    table1Part = "";
+    table2Part = "";
+    updateDisplay();
 
     const selectedItem = levelData[value];
-
-    if (selectedItem && selectedItem.children) {
+    if (selectedItem.children) {
       renderLevel(selectedItem.children, depth + 1);
+    } else {
+      renderExtensionOptions();
     }
   });
 
@@ -82,42 +77,93 @@ function removeDeeperLevels(depth) {
   while (selectors.children.length > depth + 1) {
     selectors.removeChild(selectors.lastChild);
   }
+  extensionArea.innerHTML = "";
 }
 
-function checkAnswer() {
-  if (!exercisesData.length) return;
+function renderExtensionOptions() {
+  extensionArea.innerHTML = "";
 
-  const correct = exercisesData[currentExerciseIndex].correct;
+  const btn = document.createElement("button");
+  btn.textContent = "Utveckla med standardindelning (Tabell 1)";
+  btn.onclick = renderTable1;
+  extensionArea.appendChild(btn);
+}
 
-  if (!userAnswer) {
-    feedback.innerText = "Du måste välja en klassificering.";
-    feedback.className = "feedback wrong";
-    return;
+function renderTable1() {
+  const table1 = {
+    "-01": "Teori",
+    "-03": "Ordböcker",
+    "-05": "Tidskrifter",
+    "-07": "Undervisning",
+    "-09": "Historia",
+    "-092": "Biografi",
+    "-093": "Geografisk behandling"
+  };
+
+  const select = document.createElement("select");
+  select.innerHTML = '<option value="">Välj standardindelning</option>';
+
+  Object.keys(table1).forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = key + " – " + table1[key];
+    select.appendChild(option);
+  });
+
+  select.addEventListener("change", function () {
+    table1Part = this.value;
+    table2Part = "";
+    updateDisplay();
+
+    if (table1Part === "-09" || table1Part === "-093") {
+      renderTable2();
+    }
+  });
+
+  extensionArea.appendChild(select);
+}
+
+function renderTable2() {
+  const table2 = {
+    "485": "Sverige",
+    "486": "Norge",
+    "487": "Danmark",
+    "41": "Storbritannien",
+    "43": "Tyskland",
+    "44": "Frankrike",
+    "73": "USA"
+  };
+
+  const select = document.createElement("select");
+  select.innerHTML = '<option value="">Lägg till geografiskt område</option>';
+
+  Object.keys(table2).forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = key + " – " + table2[key];
+    select.appendChild(option);
+  });
+
+  select.addEventListener("change", function () {
+    table2Part = this.value;
+    updateDisplay();
+  });
+
+  extensionArea.appendChild(select);
+}
+
+function updateDisplay() {
+  let fullNumber = baseNumber;
+
+  if (table1Part) {
+    fullNumber += table1Part.replace("-", ".");
   }
 
-  if (userAnswer === correct) {
-    feedback.innerText = "Korrekt!";
-    feedback.className = "feedback correct";
-  } else if (userAnswer.substring(0,3) === correct.substring(0,3)) {
-    feedback.innerText = "Rätt område, men du kan vara mer specifik.";
-    feedback.className = "feedback wrong";
-  } else if (userAnswer.charAt(0) === correct.charAt(0)) {
-    feedback.innerText = "Rätt huvudklass, men fel underindelning.";
-    feedback.className = "feedback wrong";
-  } else {
-    feedback.innerText = "Fel huvudklass.";
-    feedback.className = "feedback wrong";
+  if (table2Part) {
+    fullNumber += table2Part;
   }
+
+  selectedNumber.textContent = fullNumber || "Inget valt";
 }
-
-function nextExercise() {
-  if (!exercisesData.length) return;
-
-  currentExerciseIndex = (currentExerciseIndex + 1) % exercisesData.length;
-  renderExercise();
-}
-
-checkBtn.addEventListener("click", checkAnswer);
-nextBtn.addEventListener("click", nextExercise);
 
 loadData();
