@@ -2,151 +2,151 @@
   "000": {
     "title": "Datavetenskap, information & allmänna verk",
     "children": {
-      "000": { "title": "Allmänna verk", "children": {} },
-      "010": { "title": "Bibliografier & index", "children": {} },
-      "020": { "title": "Biblioteks‑ & informationsvetenskap", "children": {} },
-      "030": { "title": "Uppslagsverk & kalendrar", "children": {} },
-      "040": { "title": "Vakant", "children": {} },
-      "050": { "title": "Tidskrifter & seriella resurser", "children": {} },
-      "060": { "title": "Föreningar & organisationer", "children": {} },
-      "070": { "title": "Nyhetsmedier & journalistik", "children": {} },
-      "080": { "title": "Citatsamlingar & serier", "children": {} },
-      "090": { "title": "Manuskript & rariteter", "children": {} }
+      "000": {"title": "Allmänna verk", "children": {"000.1": {"title": "Bibliotek & bibliografi"}, "000.2": {"title": "Informationsvetenskap"}}},
+      "010": {"title": "Bibliotek & bibliografi", "children": {"010.1": {"title": "Biblioteksvetenskap"}, "010.2": {"title": "Bibliografier"}}},
+      "020": {"title": "Böcker & skrifter", "children": {"020.1": {"title": "Boktryckarkonst"}, "020.2": {"title": "Bokproduktion"}}},
+      "030": {"title": "Encyklopedier", "children": {"030.1": {"title": "Allmänna uppslagsverk"}, "030.2": {"title": "Specialiserade uppslagsverk"}}},
+      "040": {"title": "Oklassificerade verk"},
+      "050": {"title": "Tidningar & tidskrifter"},
+      "060": {"title": "Organisationer & museer"},
+      "070": {"title": "Media & journalistik"},
+      "080": {"title": "Kollektivverk"},
+      "090": {"title": "Manuskript & dokument"}
     }
   },
   "100": {
     "title": "Filosofi & psykologi",
     "children": {
-      "100": { "title": "Allmän filosofi & psykologi", "children": {} },
-      "110": { "title": "Metafysik", "children": {} },
-      "120": { "title": "Kunskap & epistemologi", "children": {} },
-      "130": { "title": "Paranormala fenomen", "children": {} },
-      "140": { "title": "Speciell filosofi", "children": {} },
-      "150": { "title": "Psykologi", "children": {} },
-      "160": { "title": "Logik", "children": {} },
-      "170": { "title": "Etik", "children": {} },
-      "180": { "title": "Filosofi för specifika ändamål", "children": {} },
-      "190": { "title": "Modern västerländsk filosofi", "children": {} }
+      "100": {"title": "Filosofi", "children": {"100.1": {"title": "Metafysik"}, "100.2": {"title": "Epistemologi"}}},
+      "110": {"title": "Logik", "children": {"110.1": {"title": "Formell logik"}, "110.2": {"title": "Informell logik"}}},
+      "120": {"title": "Metafysik"},
+      "130": {"title": "Parapsykologi & okultism"},
+      "140": {"title": "Speciella filosofier"},
+      "150": {"title": "Psykologi", "children": {"150.1": {"title": "Allmän psykologi"}, "150.2": {"title": "Kognitiv psykologi"}}},
+      "160": {"title": "Logisk filosofi"},
+      "170": {"title": "Etik"},
+      "180": {"title": "Filosofiska skolor & system"},
+      "190": {"title": "Historia över filosofi"}
     }
   },
   "200": {
     "title": "Religion",
     "children": {
-      "200": { "title": "Religion & teologi", "children": {} },
-      "210": { "title": "Filosoferande om religion", "children": {} },
-      "220": { "title": "Bibeln", "children": {} },
-      "230": { "title": "Kristendom", "children": {} },
-      "240": { "title": "Religiös etikett", "children": {} },
-      "250": { "title": "Religiös liturgi", "children": {} },
-      "260": { "title": "Religiös organisation", "children": {} },
-      "270": { "title": "Religiös historia", "children": {} },
-      "280": { "title": "Biografier i religion", "children": {} },
-      "290": { "title": "Andra religioner", "children": {} }
+      "200": {"title": "Religion i allmänhet"},
+      "210": {"title": "Filosofisk & systematisk teologi"},
+      "220": {"title": "Bibeln"},
+      "230": {"title": "Kristendom"},
+      "240": {"title": "Kristna moralprinciper"},
+      "250": {"title": "Kristna kyrkor & organisationer"},
+      "260": {"title": "Religiös organisation"},
+      "270": {"title": "Kristen teologi"},
+      "280": {"title": "Kristen liturgi & ritualer"},
+      "290": {"title": "Övriga religioner"}
     }
   },
   "300": {
     "title": "Samhällsvetenskaper",
     "children": {
-      "300": { "title": "Allmänt om samhällsvetenskaper", "children": {} },
-      "310": { "title": "Stat & regering", "children": {} },
-      "320": { "title": "Rättsvetenskap", "children": {} },
-      "330": { "title": "Nationalekonomi", "children": {} },
-      "340": { "title": "Offentlig rätt", "children": {} },
-      "350": { "title": "Offentlig förvaltning", "children": {} },
-      "360": { "title": "Sociala problem & socialt arbete", "children": {} },
-      "370": { "title": "Undervisning", "children": {} },
-      "380": { "title": "Handel & kommunikation", "children": {} },
-      "390": { "title": "Sed, etikett & folklore", "children": {} }
+      "300": {"title": "Samhällsvetenskap i allmänhet"},
+      "310": {"title": "Stat & politik"},
+      "320": {"title": "Rättsvetenskap"},
+      "330": {"title": "Nationalekonomi", "children": {"330.1": {"title": "Arbetsmarknad"}, "330.2": {"title": "Penning & bankväsen"}, "330.3": {"title": "Offentlig ekonomi"}}},
+      "340": {"title": "Rättsvetenskap"},
+      "350": {"title": "Offentlig förvaltning"},
+      "360": {"title": "Sociala frågor & socialtjänst"},
+      "370": {"title": "Utbildning"},
+      "380": {"title": "Handel & kommunikation"},
+      "390": {"title": "Sed & folkkultur"}
     }
   },
   "400": {
     "title": "Språk",
     "children": {
-      "400": { "title": "Språkvetenskap & allmänt om språk", "children": {} },
-      "410": { "title": "Skrift & alfabet", "children": {} },
-      "420": { "title": "Engelska", "children": {} },
-      "430": { "title": "Tyska", "children": {} },
-      "440": { "title": "Franska", "children": {} },
-      "450": { "title": "Italienska, spanska, portugisiska", "children": {} },
-      "460": { "title": "Rumniska & andra romanska språk", "children": {} },
-      "470": { "title": "Latin & klassiska språk", "children": {} },
-      "480": { "title": "Grekiska", "children": {} },
-      "490": { "title": "Andra språk", "children": {} }
+      "400": {"title": "Språk i allmänhet"},
+      "410": {"title": "Lingvistik"},
+      "420": {"title": "Engelska språket"},
+      "430": {"title": "Tyska språket"},
+      "440": {"title": "Franska språket"},
+      "450": {"title": "Italienska språket"},
+      "460": {"title": "Spanska språket"},
+      "470": {"title": "Latin & klassiska språk"},
+      "480": {"title": "Grekiska språket"},
+      "490": {"title": "Andra språk"}
     }
   },
   "500": {
-    "title": "Naturvetenskap & matematik",
+    "title": "Naturvetenskap",
     "children": {
-      "500": { "title": "Naturvetenskap & allmänt", "children": {} },
-      "510": { "title": "Matematik", "children": {} },
-      "520": { "title": "Astronomi", "children": {} },
-      "530": { "title": "Fysik", "children": {} },
-      "540": { "title": "Kemi", "children": {} },
-      "550": { "title": "Jordbruk", "children": {} },
-      "560": { "title": "Paleontologi & geologi", "children": {} },
-      "570": { "title": "Biologi", "children": {} },
-      "580": { "title": "Botanik", "children": {} },
-      "590": { "title": "Zoologi", "children": {} }
+      "500": {"title": "Naturvetenskap i allmänhet"},
+      "510": {"title": "Matematik"},
+      "520": {"title": "Astronomi"},
+      "530": {"title": "Fysik"},
+      "540": {"title": "Kemi"},
+      "550": {"title": "Jordvetenskap"},
+      "560": {"title": "Paleontologi & geologi"},
+      "570": {"title": "Biologi"},
+      "580": {"title": "Botanik"},
+      "590": {"title": "Zoologi"}
     }
   },
   "600": {
     "title": "Teknik",
     "children": {
-      "600": { "title": "Teknik & tillämpad vetenskap", "children": {} },
-      "610": { "title": "Medicinsk teknik", "children": {} },
-      "620": { "title": "Ingenjörskonst", "children": {} },
-      "630": { "title": "Jordbruksteknik", "children": {} },
-      "640": { "title": "Hushållsvetenskap", "children": {} },
-      "650": { "title": "Management & transport", "children": {} },
-      "660": { "title": "Kemisk teknik", "children": {} },
-      "670": { "title": "Tillverkning & produktion", "children": {} },
-      "680": { "title": "Tillverkning av varor", "children": {} },
-      "690": { "title": "Byggnadsindustri", "children": {} }
+      "600": {"title": "Teknik i allmänhet"},
+      "610": {"title": "Medicinsk teknik"},
+      "620": {"title": "Ingenjörsvetenskap"},
+      "630": {"title": "Jordbruksteknik"},
+      "640": {"title": "Hushållsteknik"},
+      "650": {"title": "Management & affärsteknik"},
+      "660": {"title": "Kemi & metallurgi"},
+      "670": {"title": "Tillverkning & byggnadsteknik"},
+      "680": {"title": "Produktion & konstruktion"},
+      "690": {"title": "Transport"}
     }
   },
   "700": {
     "title": "Konstarterna & fritid",
     "children": {
-      "700": { "title": "Konst & fritid", "children": {} },
-      "710": { "title": "Landskapsarkitektur & trädgårdsdesign", "children": {} },
-      "720": { "title": "Arkitektur", "children": {} },
-      "730": { "title": "Skulptur & målning", "children": {} },
-      "740": { "title": "Teckningskonst", "children": {} },
-      "750": { "title": "Måleri & dekoration", "children": {} },
-      "760": { "title": "Musik", "children": {} },
-      "770": { "title": "Fotografi & film", "children": {} },
-      "780": { "title": "Musikgenre & uppträdande", "children": {} },
-      "790": { "title": "Sport & fritidsaktiviteter", "children": {} }
+      "700": {"title": "Konstarterna i allmänhet"},
+      "710": {"title": "Landskapskonst & arkitektur"},
+      "720": {"title": "Skulptur & konstverk"},
+      "730": {"title": "Måleri"},
+      "740": {"title": "Teckningskonst & grafik"},
+      "750": {"title": "Måleri & dekoration"},
+      "760": {"title": "Musik"},
+      "770": {"title": "Musikinstrument"},
+      "780": {"title": "Scenkonst"},
+      "790": {"title": "Sport & fritid"}
     }
   },
   "800": {
     "title": "Litteratur",
     "children": {
-      "800": { "title": "Litteratur & retorik", "children": {} },
-      "810": { "title": "Amerikansk litteratur", "children": {} },
-      "820": { "title": "Engelsk litteratur", "children": {} },
-      "830": { "title": "Tysk litteratur", "children": {} },
-      "840": { "title": "Fransk litteratur", "children": {} },
-      "850": { "title": "Italiensk, spansk litteratur", "children": {} },
-      "860": { "title": "Latin & klassisk litteratur", "children": {} },
-      "870": { "title": "Latinamerikansk litteratur", "children": {} },
-      "880": { "title": "Brittisk litteratur", "children": {} },
-      "890": { "title": "Andra litteraturer", "children": {} }
+      "800": {"title": "Litteratur i allmänhet"},
+      "810": {"title": "Engelsk litteratur"},
+      "820": {"title": "Tysk litteratur"},
+      "830": {"title": "Fransk litteratur"},
+      "840": {"title": "Italiensk litteratur"},
+      "850": {"title": "Spansk litteratur"},
+      "860": {"title": "Grekisk & latinsk litteratur"},
+      "870": {"title": "Skandinavisk litteratur"},
+      "880": {"title": "Belgisk & nederländsk litteratur"},
+      "890": {"title": "Övrig litteratur"}
     }
   },
   "900": {
     "title": "Historia & geografi",
     "children": {
-      "900": { "title": "Historia & geografi", "children": {} },
-      "910": { "title": "Geografi & resor", "children": {} },
-      "920": { "title": "Biografi & släktforskning", "children": {} },
-      "930": { "title": "Antik historia", "children": {} },
-      "940": { "title": "Europas historia", "children": {} },
-      "950": { "title": "Asiens historia", "children": {} },
-      "960": { "title": "Afrikas historia", "children": {} },
-      "970": { "title": "Nordamerikas historia", "children": {} },
-      "980": { "title": "Sydamerikas historia", "children": {} },
-      "990": { "title": "Andra områden", "children": {} }
+      "900": {"title": "Historia i allmänhet"},
+      "910": {"title": "Geografi & resor"},
+      "920": {"title": "Biografier & släkthistoria"},
+      "930": {"title": "Forntid & antik historia"},
+      "940": {"title": "Europas historia", "children": {"940.1": {"title": "Storbritannien"}, "940.2": {"title": "Tyskland"}, "940.3": {"title": "Frankrike"}}},
+      "950": {"title": "Asiens historia"},
+      "960": {"title": "Afrikas historia"},
+      "970": {"title": "Nordamerikas historia"},
+      "980": {"title": "Sydamerikas historia"},
+      "990": {"title": "Övriga områden & historia"}
     }
   }
 }
