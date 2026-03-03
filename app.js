@@ -1,20 +1,6 @@
 let deweyData = {};
 let exercisesData = [];
-let currentExerciseIndex = 0;
-let userAnswer = "";
-let standardAdded = false; // för Tabell 1
 
-// DOM-element
-const exerciseCard = document.getElementById("exerciseCard");
-const selectors = document.getElementById("selectors");
-const selectedNumber = document.getElementById("selectedNumber");
-const feedback = document.getElementById("feedback");
-const checkBtn = document.getElementById("checkBtn");
-const nextBtn = document.getElementById("nextBtn");
-const table1Select = document.getElementById("table1Select");
-const addTable1Btn = document.getElementById("addTable1Btn");
-
-// Ladda JSON-data
 async function loadData() {
   const deweyRes = await fetch('./dewey.json');
   deweyData = await deweyRes.json();
@@ -22,12 +8,22 @@ async function loadData() {
   const exercisesRes = await fetch('./exercises.json');
   exercisesData = await exercisesRes.json();
 
-  renderExercise();
+  renderExercise(); // starta första övningen
 }
 
 loadData();
 
-// Rendera övning
+let currentExerciseIndex = 0;
+let userAnswer = "";
+
+const exerciseCard = document.getElementById("exerciseCard");
+const selectors = document.getElementById("selectors");
+const selectedNumber = document.getElementById("selectedNumber");
+const feedback = document.getElementById("feedback");
+const checkBtn = document.getElementById("checkBtn");
+const nextBtn = document.getElementById("nextBtn");
+const table1Select = document.getElementById("table1Select");
+
 function renderExercise() {
   const ex = exercisesData[currentExerciseIndex];
   exerciseCard.innerHTML = `
@@ -38,18 +34,15 @@ function renderExercise() {
   resetSelection();
 }
 
-// Nollställ val
 function resetSelection() {
   selectors.innerHTML = "";
   userAnswer = "";
   selectedNumber.textContent = "Inget valt";
   feedback.innerText = "";
-  standardAdded = false; // återställ Tabell 1
   renderLevel(deweyData, 0);
-  table1Select.selectedIndex = 0; // återställ Tabell 1 dropdown
 }
 
-// Rendera Dewey-nivåer hierarkiskt
+// Hierarkisk rendering av nivåer
 function renderLevel(levelData, depth) {
   const select = document.createElement("select");
   select.innerHTML = '<option value="">Välj nivå</option>';
@@ -73,36 +66,13 @@ function renderLevel(levelData, depth) {
   selectors.appendChild(select);
 }
 
-// Ta bort undernivåer när ett val ändras
 function removeDeeperLevels(depth) {
   while (selectors.children.length > depth + 1) {
     selectors.removeChild(selectors.lastChild);
   }
 }
 
-// Lägg till Tabell 1-standardindelning
-function addTable1() {
-  if (standardAdded) {
-    feedback.innerText = "Du kan bara lägga till en standardindelning per övning.";
-    feedback.className = "feedback wrong";
-    return;
-  }
-  const selected = table1Select.value;
-  if (!selected) return;
-
-  if (userAnswer) {
-    userAnswer += selected;
-  } else {
-    userAnswer = selected;
-  }
-
-  selectedNumber.textContent = userAnswer;
-  standardAdded = true;
-  feedback.innerText = "Standardindelning tillagd!";
-  feedback.className = "feedback correct";
-}
-
-// Kontrollera svar
+// Kontrollera svaret
 function checkAnswer() {
   const correct = exercisesData[currentExerciseIndex].correct;
   if (!userAnswer) {
@@ -131,7 +101,27 @@ function nextExercise() {
   renderExercise();
 }
 
-// Event listeners
+// Tabell 1-funktionalitet
+table1Select.addEventListener("change", function() {
+  const suffix = this.value; // t.ex. ".01"
+  if (!suffix) return;
+
+  if (!userAnswer) {
+    alert("Välj först en huvudklass eller hundraavdelning innan du lägger till standardindelning.");
+    this.value = "";
+    return;
+  }
+
+  // Lägg till Tabell 1-suffix en gång
+  if (!userAnswer.includes(suffix)) {
+    userAnswer += suffix;
+    selectedNumber.textContent = userAnswer;
+  }
+
+  this.value = "";
+});
+
 checkBtn.addEventListener("click", checkAnswer);
 nextBtn.addEventListener("click", nextExercise);
-addTable1Btn.addEventListener("click", addTable1);
+
+renderExercise();
