@@ -119,6 +119,34 @@ function nextExercise() {
   renderExercise();
 }
 
+const expandBtn = document.getElementById("expandBtn");
+const expandedNumber = document.getElementById("expandedNumber");
+
+let currentExpanded = ""; // håller koll på den utbyggda koden
+
+expandBtn.addEventListener("click", function() {
+  if (!userAnswer) {
+    expandedNumber.textContent = "Du måste först välja ett nummer.";
+    return;
+  }
+
+  // Hämta valda numret i Dewey-data
+  const path = userAnswer.split('.'); // antag att numren sparas punktseparerade
+  let node = deweyData;
+  for (let p of path) {
+    if (node[p]) node = node[p].children || {};
+  }
+
+  // Om det finns barnnivåer, lägg till första barnet
+  const childrenKeys = Object.keys(node);
+  if (childrenKeys.length > 0) {
+    currentExpanded = userAnswer + "." + childrenKeys[0];
+    expandedNumber.textContent = currentExpanded + " – " + node[childrenKeys[0]].title;
+  } else {
+    expandedNumber.textContent = "Inga fler nivåer att utveckla.";
+  }
+});
+
 // Event listeners
 checkBtn.addEventListener("click", checkAnswer);
 nextBtn.addEventListener("click", nextExercise);
