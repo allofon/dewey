@@ -1,21 +1,11 @@
+// ====== main.js ======
+
 let deweyData = {};
 let exercisesData = [];
-
-async function loadData() {
-  const deweyRes = await fetch('./dewey.json');
-  deweyData = await deweyRes.json();
-
-  const exercisesRes = await fetch('./exercises.json');
-  exercisesData = await exercisesRes.json();
-
-  renderExercise(); // starta första övningen
-}
-
-loadData();
-
 let currentExerciseIndex = 0;
 let userAnswer = "";
 
+// DOM-element
 const exerciseCard = document.getElementById("exerciseCard");
 const selectors = document.getElementById("selectors");
 const selectedNumber = document.getElementById("selectedNumber");
@@ -23,16 +13,39 @@ const feedback = document.getElementById("feedback");
 const checkBtn = document.getElementById("checkBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+// Ladda JSON och starta första övningen
+async function loadData() {
+  try {
+    const deweyRes = await fetch('./dewey.json');
+    deweyData = await deweyRes.json();
+
+    const exercisesRes = await fetch('./exercises.json');
+    exercisesData = await exercisesRes.json();
+
+    renderExercise(); // körs först när data är laddad
+  } catch (err) {
+    console.error("Kunde inte ladda JSON:", err);
+    exerciseCard.innerHTML = "<p>Fel vid inläsning av övningar.</p>";
+  }
+}
+
+loadData();
+
+// Visa aktuell övning
 function renderExercise() {
   const ex = exercisesData[currentExerciseIndex];
+  if (!ex) return;
+
   exerciseCard.innerHTML = `
-    <h2>Fall</h2>
+    <h2>Fall ${currentExerciseIndex + 1}</h2>
     <p><strong>Titel:</strong> ${ex.title}</p>
     <p><strong>Beskrivning:</strong> ${ex.description}</p>
   `;
+
   resetSelection();
 }
 
+// Nollställ väljaren och rendera Dewey-hierarkin
 function resetSelection() {
   selectors.innerHTML = "";
   userAnswer = "";
@@ -41,9 +54,11 @@ function resetSelection() {
   renderLevel(deweyData, 0);
 }
 
+// Skapa select-element för varje nivå i Dewey-hierarkin
 function renderLevel(levelData, depth) {
   const select = document.createElement("select");
   select.innerHTML = '<option value="">Välj nivå</option>';
+
   for (let key in levelData) {
     const option = document.createElement("option");
     option.value = key;
@@ -57,30 +72,36 @@ function renderLevel(levelData, depth) {
     if (!value) return;
     userAnswer = value;
     selectedNumber.textContent = userAnswer;
+
     const children = levelData[value].children;
-    if (children) renderLevel(children, depth + 1);
+    if (children && Object.keys(children).length > 0) {
+      renderLevel(children, depth + 1);
+    }
   });
 
   selectors.appendChild(select);
 }
 
+// Ta bort select-element som är djupare än den nu valda nivån
 function removeDeeperLevels(depth) {
   while (selectors.children.length > depth + 1) {
     selectors.removeChild(selectors.lastChild);
   }
 }
 
+// Kontrollera användarens svar
 function checkAnswer() {
-  const correct = exercisesData[currentExerciseIndex].correct;
+  const correct = exercisesData[currentExerciseIndex]?.correct;
   if (!userAnswer) {
     feedback.innerText = "Du måste välja en klassificering.";
     feedback.className = "feedback wrong";
     return;
   }
+
   if (userAnswer === correct) {
     feedback.innerText = "Korrekt!";
     feedback.className = "feedback correct";
-  } else if (userAnswer.substring(0,3) === correct.substring(0,3)) {
+  } else if (userAnswer.substring(0, 3) === correct.substring(0, 3)) {
     feedback.innerText = "Rätt område, men du kan vara mer specifik.";
     feedback.className = "feedback wrong";
   } else if (userAnswer.charAt(0) === correct.charAt(0)) {
@@ -92,12 +113,12 @@ function checkAnswer() {
   }
 }
 
+// Gå till nästa övning
 function nextExercise() {
   currentExerciseIndex = (currentExerciseIndex + 1) % exercisesData.length;
   renderExercise();
 }
 
+// Event listeners
 checkBtn.addEventListener("click", checkAnswer);
 nextBtn.addEventListener("click", nextExercise);
-
-renderExercise();
