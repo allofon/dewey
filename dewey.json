@@ -91,36 +91,136 @@
       "490": {"title": "Övriga språk"}
     }
   },
+{
   "500": {
     "title": "Naturvetenskap",
     "children": {
       "500": {"title": "Naturvetenskap i allmänhet"},
-      "510": {"title": "Matematik"},
-      "520": {"title": "Astronomi"},
-      "530": {"title": "Fysik"},
-      "540": {"title": "Kemi"},
-      "550": {"title": "Geovetenskap"},
-      "560": {"title": "Fossil & förhistoriskt liv"},
-      "570": {"title": "Biologi"},
-      "580": {"title": "Botanik"},
-      "590": {"title": "Zoologi"}
+      "510": {
+        "title": "Matematik",
+        "children": {
+          "511": {"title": "Allmän matematik"},
+          "512": {"title": "Algebra"},
+          "513": {"title": "Aritmetik"},
+          "514": {"title": "Geometri"},
+          "515": {"title": "Analys"},
+          "516": {"title": "Kombinatorik"},
+          "517": {"title": "Sannolikhet & statistik"},
+          "518": {"title": "Numeriska metoder"},
+          "519": {"title": "Matematikens historia"}
+        }
+      },
+      "520": {
+        "title": "Astronomi",
+        "children": {
+          "521": {"title": "Astronomiska observationer"},
+          "522": {"title": "Planeter"},
+          "523": {"title": "Stjärnor"},
+          "524": {"title": "Galaxer"},
+          "525": {"title": "Kosmologi"},
+          "526": {"title": "Astronomiska instrument"}
+        }
+      },
+      "530": {
+        "title": "Fysik",
+        "children": {
+          "531": {"title": "Klassisk mekanik"},
+          "532": {"title": "Fluidmekanik"},
+          "533": {"title": "Termodynamik"},
+          "534": {"title": "Ljus & optik"},
+          "535": {"title": "Elektricitet & magnetism"},
+          "536": {"title": "Vågrörelse & ljud"},
+          "537": {"title": "Kärnfysik & partikelfysik"}
+        }
+      },
+      "540": {
+        "title": "Kemi",
+        "children": {
+          "541": {"title": "Allmän kemi"},
+          "542": {"title": "Oorganisk kemi"},
+          "543": {"title": "Organisk kemi"},
+          "544": {"title": "Analytisk kemi"},
+          "545": {"title": "Fysikalisk kemi"},
+          "546": {"title": "Biokemi"},
+          "547": {"title": "Kemins historia"}
+        }
+      },
+      "550": {
+        "title": "Geovetenskap",
+        "children": {
+          "551": {"title": "Mineralogi"},
+          "552": {"title": "Petrologi"},
+          "553": {"title": "Geologi"},
+          "554": {"title": "Paleogeografi"},
+          "555": {"title": "Stratigrafi"},
+          "556": {"title": "Paleontologi"},
+          "557": {"title": "Geofysik"}
+        }
+      },
+      "570": {
+        "title": "Biologi",
+        "children": {
+          "571": {"title": "Biologi i allmänhet"},
+          "572": {"title": "Cellbiologi"},
+          "573": {"title": "Genetik"},
+          "574": {"title": "Ekologi"},
+          "575": {"title": "Evolution"},
+          "576": {"title": "Mikrobiologi"},
+          "577": {"title": "Zoologi"},
+          "578": {"title": "Botanik"},
+          "579": {"title": "Etologi"}
+        }
+      }
     }
   },
   "600": {
     "title": "Teknik",
     "children": {
       "600": {"title": "Teknik i allmänhet"},
-      "610": {"title": "Medicin & hälsa"},
-      "620": {"title": "Ingenjörsvetenskap"},
-      "630": {"title": "Jordbruk"},
-      "640": {"title": "Hem & hushåll"},
-      "650": {"title": "Företagsekonomi"},
-      "660": {"title": "Kemisk teknik"},
-      "670": {"title": "Tillverkning"},
-      "680": {"title": "Finmekanik & diverse teknik"},
-      "690": {"title": "Byggnadsteknik"}
+      "610": {
+        "title": "Medicin & hälsa",
+        "children": {
+          "611": {"title": "Anatomi"},
+          "612": {"title": "Fysiologi"},
+          "613": {"title": "Sjukdomar"},
+          "614": {"title": "Hygien"},
+          "615": {"title": "Farmakologi"},
+          "616": {"title": "Sjukvårdsteknik"}
+        }
+      },
+      "620": {
+        "title": "Ingenjörsvetenskap",
+        "children": {
+          "621": {"title": "Maskinteknik"},
+          "622": {"title": "Materialteknik"},
+          "623": {"title": "Byggnadsteknik"},
+          "624": {"title": "Elektronik"},
+          "625": {"title": "Energi & kraftsystem"},
+          "626": {"title": "Transportteknik"}
+        }
+      },
+      "630": {
+        "title": "Jordbruk",
+        "children": {
+          "631": {"title": "Jordbruk i allmänhet"},
+          "632": {"title": "Jordbruksmaskiner"},
+          "633": {"title": "Växtodling"},
+          "634": {"title": "Boskapsskötsel"},
+          "635": {"title": "Skogsbruk"}
+        }
+      },
+      "660": {
+        "title": "Kemisk teknik",
+        "children": {
+          "661": {"title": "Processkemi"},
+          "662": {"title": "Petrokemi"},
+          "663": {"title": "Materialsyntes"},
+          "664": {"title": "Bioteknologi"}
+        }
+      }
     }
-  },
+  }
+},
   "700": {
     "title": "Konst & fritid",
     "children": {
