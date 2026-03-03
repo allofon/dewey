@@ -54,7 +54,7 @@ function resetSelection() {
   feedback.innerText = "";
   standardAdded = false;
   renderLevel(deweyData, 0);
-  renderTable1Options();
+  table1Select.selectedIndex = 0;  // återställ dropdown
 }
 
 function renderLevel(levelData, depth) {
