@@ -48,20 +48,37 @@
   },
 
   "300": {
-    "title": "Samhällsvetenskaper",
-    "children": {
-      "300": {"title": "Samhällsvetenskap i allmänhet"},
-      "310": {"title": "Statistik"},
-      "320": {"title": "Statsvetenskap"},
-      "330": {"title": "Nationalekonomi"},
-      "340": {"title": "Rättsvetenskap"},
-      "350": {"title": "Offentlig förvaltning"},
-      "360": {"title": "Sociala problem & tjänster"},
-      "370": {"title": "Utbildning"},
-      "380": {"title": "Handel & kommunikation"},
-      "390": {"title": "Seder & folkliv"}
-    }
-  },
+  "title": "Samhällsvetenskaper",
+  "children": {
+    "300": {"title": "Samhällsvetenskap i allmänhet"},
+    "310": {"title": "Statistik"},
+    "320": {"title": "Statsvetenskap"},
+    "330": {
+      "title": "Nationalekonomi",
+      "children": {
+        "330.1": {"title": "Ekonomisk teori"},
+        "330.9": {"title": "Ekonomisk historia & geografi"},
+        "331": {"title": "Arbetsmarknadsekonomi"},
+        "332": {"title": "Finansväsen"},
+        "338": {"title": "Produktion & industri"}
+      }
+    },
+    "340": {"title": "Rättsvetenskap"},
+    "350": {"title": "Offentlig förvaltning"},
+    "360": {"title": "Sociala problem & tjänster"},
+    "370": {
+      "title": "Utbildning",
+      "children": {
+        "371": {"title": "Skolorganisation"},
+        "372": {"title": "Grundskoleutbildning"},
+        "373": {"title": "Gymnasieutbildning"},
+        "378": {"title": "Högre utbildning"}
+      }
+    },
+    "380": {"title": "Handel & kommunikation"},
+    "390": {"title": "Seder & folkliv"}
+  }
+},
 
   "400": {
     "title": "Språk",
@@ -144,18 +161,39 @@
   },
 
   "900": {
-    "title": "Historia & geografi",
-    "children": {
-      "900": {"title": "Historia i allmänhet"},
-      "910": {"title": "Geografi & resor"},
-      "920": {"title": "Biografi & genealogi"},
-      "930": {"title": "Forntidens historia"},
-      "940": {"title": "Europas historia"},
-      "950": {"title": "Asiens historia"},
-      "960": {"title": "Afrikas historia"},
-      "970": {"title": "Nordamerikas historia"},
-      "980": {"title": "Sydamerikas historia"},
-      "990": {"title": "Oceanien & polområden"}
-    }
+  "title": "Historia & geografi",
+  "children": {
+    "900": {"title": "Historia i allmänhet"},
+    "910": {"title": "Geografi & resor"},
+    "920": {"title": "Biografi & genealogi"},
+    "930": {"title": "Forntidens historia"},
+    "940": {
+      "title": "Europas historia",
+      "children": {
+        "941": {"title": "Storbritannien"},
+        "943": {"title": "Tyskland"},
+        "944": {"title": "Frankrike"},
+        "948": {
+          "title": "Skandinavien",
+          "children": {
+            "948.1": {"title": "Norge"},
+            "948.5": {
+              "title": "Sverige",
+              "children": {
+                "948.501": {"title": "Medeltiden"},
+                "948.507": {"title": "1900-talet"},
+                "948.509": {"title": "2000-talet"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "950": {"title": "Asiens historia"},
+    "960": {"title": "Afrikas historia"},
+    "970": {"title": "Nordamerikas historia"},
+    "980": {"title": "Sydamerikas historia"},
+    "990": {"title": "Oceanien & polområden"}
   }
+}
 }
