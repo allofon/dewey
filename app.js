@@ -13,6 +13,49 @@ const feedback = document.getElementById("feedback");
 const checkBtn = document.getElementById("checkBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+const expandBtn = document.getElementById("expandBtn");
+const expandedNumber = document.getElementById("expandedNumber");
+
+let currentNode = null; // node vi bygger ut
+let currentExpanded = ""; // texten som visas
+
+expandBtn.addEventListener("click", function() {
+  if (!userAnswer) {
+    expandedNumber.textContent = "Du måste först välja ett nummer.";
+    return;
+  }
+
+  // Hitta noden motsvarande userAnswer
+  currentNode = findNodeByKey(deweyData, userAnswer);
+  if (!currentNode) {
+    expandedNumber.textContent = "Kunde inte hitta vald kod i Dewey-data.";
+    return;
+  }
+
+  if (currentNode.children && Object.keys(currentNode.children).length > 0) {
+    // ta första barnet
+    const firstChildKey = Object.keys(currentNode.children)[0];
+    currentExpanded = firstChildKey + " – " + currentNode.children[firstChildKey].title;
+    expandedNumber.textContent = currentExpanded;
+    // uppdatera currentNode så vi kan utveckla nästa gång
+    currentNode = currentNode.children[firstChildKey];
+  } else {
+    expandedNumber.textContent = "Inga fler nivåer att utveckla.";
+  }
+});
+
+// Funktion för att hitta nod i Dewey-trädet
+function findNodeByKey(node, key) {
+  if (node[key]) return node[key];
+  for (let k in node) {
+    if (node[k].children) {
+      const found = findNodeByKey(node[k].children, key);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
 // Ladda JSON och starta första övningen
 async function loadData() {
   try {
