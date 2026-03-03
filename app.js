@@ -1,17 +1,20 @@
 let deweyData = {};
 let exercisesData = [];
-let table1Data = {
-  ".01": "Allmänt verk",
-  ".02": "Bibliografi",
-  ".03": "Biblioteks- & informationsvetenskap",
-  ".04": "Encyklopedier",
-  ".05": "Oklassificerade verk",
-  ".06": "Tidskrifter",
-  ".07": "Organisationer & museer",
-  ".08": "Media & journalistik",
-  ".09": "Sällsynta böcker & manuskript"
-};
+let currentExerciseIndex = 0;
+let userAnswer = "";
+let standardAdded = false; // för Tabell 1
 
+// DOM-element
+const exerciseCard = document.getElementById("exerciseCard");
+const selectors = document.getElementById("selectors");
+const selectedNumber = document.getElementById("selectedNumber");
+const feedback = document.getElementById("feedback");
+const checkBtn = document.getElementById("checkBtn");
+const nextBtn = document.getElementById("nextBtn");
+const table1Select = document.getElementById("table1Select");
+const addTable1Btn = document.getElementById("addTable1Btn");
+
+// Ladda JSON-data
 async function loadData() {
   const deweyRes = await fetch('./dewey.json');
   deweyData = await deweyRes.json();
@@ -24,19 +27,7 @@ async function loadData() {
 
 loadData();
 
-let currentExerciseIndex = 0;
-let userAnswer = "";
-let standardAdded = false;
-
-const exerciseCard = document.getElementById("exerciseCard");
-const selectors = document.getElementById("selectors");
-const selectedNumber = document.getElementById("selectedNumber");
-const feedback = document.getElementById("feedback");
-const checkBtn = document.getElementById("checkBtn");
-const nextBtn = document.getElementById("nextBtn");
-const table1Select = document.getElementById("table1Select");
-const addTable1Btn = document.getElementById("addTable1Btn");
-
+// Rendera övning
 function renderExercise() {
   const ex = exercisesData[currentExerciseIndex];
   exerciseCard.innerHTML = `
@@ -47,16 +38,18 @@ function renderExercise() {
   resetSelection();
 }
 
+// Nollställ val
 function resetSelection() {
   selectors.innerHTML = "";
   userAnswer = "";
   selectedNumber.textContent = "Inget valt";
   feedback.innerText = "";
-  standardAdded = false;
+  standardAdded = false; // återställ Tabell 1
   renderLevel(deweyData, 0);
-  table1Select.selectedIndex = 0;  // återställ dropdown
+  table1Select.selectedIndex = 0; // återställ Tabell 1 dropdown
 }
 
+// Rendera Dewey-nivåer hierarkiskt
 function renderLevel(levelData, depth) {
   const select = document.createElement("select");
   select.innerHTML = '<option value="">Välj nivå</option>';
@@ -80,22 +73,14 @@ function renderLevel(levelData, depth) {
   selectors.appendChild(select);
 }
 
+// Ta bort undernivåer när ett val ändras
 function removeDeeperLevels(depth) {
   while (selectors.children.length > depth + 1) {
     selectors.removeChild(selectors.lastChild);
   }
 }
 
-function renderTable1Options() {
-  table1Select.innerHTML = '<option value="">Välj standard (Tabell 1)</option>';
-  for (let key in table1Data) {
-    const option = document.createElement("option");
-    option.value = key;
-    option.textContent = key + " – " + table1Data[key];
-    table1Select.appendChild(option);
-  }
-}
-
+// Lägg till Tabell 1-standardindelning
 function addTable1() {
   if (standardAdded) {
     feedback.innerText = "Du kan bara lägga till en standardindelning per övning.";
@@ -104,13 +89,20 @@ function addTable1() {
   }
   const selected = table1Select.value;
   if (!selected) return;
-  userAnswer += selected;
+
+  if (userAnswer) {
+    userAnswer += selected;
+  } else {
+    userAnswer = selected;
+  }
+
   selectedNumber.textContent = userAnswer;
   standardAdded = true;
   feedback.innerText = "Standardindelning tillagd!";
   feedback.className = "feedback correct";
 }
 
+// Kontrollera svar
 function checkAnswer() {
   const correct = exercisesData[currentExerciseIndex].correct;
   if (!userAnswer) {
@@ -133,6 +125,7 @@ function checkAnswer() {
   }
 }
 
+// Nästa övning
 function nextExercise() {
   currentExerciseIndex = (currentExerciseIndex + 1) % exercisesData.length;
   renderExercise();
@@ -142,5 +135,3 @@ function nextExercise() {
 checkBtn.addEventListener("click", checkAnswer);
 nextBtn.addEventListener("click", nextExercise);
 addTable1Btn.addEventListener("click", addTable1);
-
-renderExercise();
