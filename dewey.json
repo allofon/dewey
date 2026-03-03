@@ -218,8 +218,7 @@
         }
       }
     }
-  }
-},
+  },
   "700": {
     "title": "Konst & fritid",
     "children": {
@@ -286,4 +285,4 @@
       "990": {"title": "Oceanien & polområden"}
     }
   }
-
+}
