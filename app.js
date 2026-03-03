@@ -1,5 +1,17 @@
-import deweyData from './dewey.json' assert { type: 'json' };
-import exercisesData from './exercises.json' assert { type: 'json' };
+let deweyData = {};
+let exercisesData = [];
+
+async function loadData() {
+  const deweyRes = await fetch('./dewey.json');
+  deweyData = await deweyRes.json();
+
+  const exercisesRes = await fetch('./exercises.json');
+  exercisesData = await exercisesRes.json();
+
+  renderExercise(); // starta första övningen
+}
+
+loadData();
 
 let currentExerciseIndex = 0;
 let userAnswer = "";
