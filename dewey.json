@@ -141,7 +141,7 @@
       "910": {"title": "Geografi & resor"},
       "920": {"title": "Biografier & släkthistoria"},
       "930": {"title": "Forntid & antik historia"},
-      "940": {"title": "Europas historia", "children": {"940.1": {"title": "Storbritannien"}, "940.2": {"title": "Tyskland"}, "940.3": {"title": "Frankrike"}, "948: {"title": "Skandinavien" "children": {
+      "940": {"title": "Europas historia", "children": {"940.1": {"title": "Storbritannien"}, "940.2": {"title": "Tyskland"}, "940.3": {"title": "Frankrike"}, "948: { "title": "Skandinavien", "children": {
               "948.5": {"title": "Sverige"}}},
       "950": {"title": "Asiens historia"},
       "960": {"title": "Afrikas historia"},
