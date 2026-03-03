@@ -7,21 +7,35 @@
 </head>
 <body>
 
-<h1>Dewey Träningsverktyg</h1>
+<h1>Dewey-övningar</h1>
 
-<div class="card" id="exerciseCard"></div>
+<div id="exerciseCard"></div>
 
-<div class="card">
-  <h3>Hierarkisk klassificering</h3>
-  <div id="selectors"></div>
-  <div id="extensionArea"></div>
-  <p><strong>Ditt nummer:</strong> <span id="selectedNumber">Inget valt</span></p>
-  <button id="checkBtn">Kontrollera</button>
-  <button id="nextBtn">Nästa övning</button>
-  <button id="expandBtn">Utveckla koden</button>
-  <p>Utbyggd kod: <span id="expandedNumber">Inget valt</span></p>
-  <div id="feedback" class="feedback"></div>
-</div>
+<div id="selectors"></div>
+
+<p>Valt nummer: <span id="selectedNumber">Inget valt</span></p>
+
+<p id="feedback"></p>
+
+<button id="checkBtn">Kontrollera svar</button>
+<button id="nextBtn">Nästa övning</button>
+
+<hr>
+
+<h3>Utveckla med standardindelning (Tabell 1)</h3>
+<select id="table1Select">
+  <option value="">Välj standardindelning</option>
+  <option value=".01">– 01 Filosofi</option>
+  <option value=".02">– 02 Religion</option>
+  <option value=".03">– 03 Historia</option>
+  <option value=".04">– 04 Språk</option>
+  <option value=".05">– 05 Naturvetenskap</option>
+  <option value=".06">– 06 Teknik</option>
+  <option value=".07">– 07 Konst & fritid</option>
+  <option value=".08">– 08 Litteratur</option>
+  <option value=".09">– 09 Övrigt</option>
+</select>
+<button id="addTable1Btn">Utveckla med standardindelning</button>
 
 <script type="module" src="app.js"></script>
 </body>
